@@ -68,10 +68,10 @@ public class Display
         }
 
         // clears the screen
-        public void clearScreen()
-        {
-            System.out.println("\n".repeat(50));
-        }
+      //  public void clearScreen()
+      //  {
+      //      System.out.println("\n".repeat(50));
+      //  }
 
 }
 
