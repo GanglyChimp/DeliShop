@@ -34,14 +34,27 @@ public class OrderScreen {
                     this.display.printMenu(Menu.breadType);
                     int breadChoice = this.display.getMenuChoice(1, Menu.breadType.length);
                     String bread = Menu.breadType[breadChoice - 1];
+
                     //size
+                    this.display.printHeader("Select Size");
+                    this.display.printMenu(Menu.SizesInch);
+                    int sizeChoice = this.display.getMenuChoice(1, Menu.SizesInch.length);
+                    String size = Menu.SizesInch[sizeChoice - 1];
+
                     //create sandwich
+
                     //select meats
+
                     //choose cheese
+
                     //toppings
+
                     // sauces
+
                     //toasted y/n
+
                     //add order.
+
                     break;
                 case 2:
                     //  addDrink()
