@@ -16,9 +16,6 @@ public class Drinks implements MenuItem
    }
 
 
-
-
-
     //in menu item it returns the price based on a case of S/M/L with prices listed
     @Override
     public double getPrice()
