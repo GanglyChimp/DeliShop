@@ -19,12 +19,12 @@ public class Chips implements MenuItem
     @Override
     public double getPrice()
     {
-        return 0;
+        return 1.50;
     }
 
     @Override
     public String getOptions()
     {
-        return "";
+        return "Chips" + type;
     }
 }
