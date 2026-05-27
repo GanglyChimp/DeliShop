@@ -39,9 +39,30 @@ public class OrderScreen {
                     this.display.printHeader("Select Size");
                     this.display.printMenu(Menu.SizesInch);
                     int sizeChoice = this.display.getMenuChoice(1, Menu.SizesInch.length);
+
                     String size = Menu.SizesInch[sizeChoice - 1];
 
                     //create sandwich
+                    Sandwich sandwich = new Sandwich(bread, size);
+                    this.display.printHeader("Select Meat");
+                    this.display.printMenu(Menu.meatType);
+                    this.display.printLine("0) Done adding meats");
+
+                    boolean addingMeats = true;
+
+                    while (addingMeats)
+                    {
+                        int meatChoice = this.display.getMenuChoice(0, Menu.meatType.length);
+                        if (meatChoice == 0)
+                        {
+                           addingMeats = false;
+                        }
+                        else
+                        {
+                            sandwich.addMeats(Menu.meatType[meatChoice - 1]);
+                            this.display.printLine(Menu.meatType[meatChoice - 1] + " added.");
+                        }
+                    }
 
                     //select meats
 
