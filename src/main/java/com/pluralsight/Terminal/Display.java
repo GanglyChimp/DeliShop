@@ -41,4 +41,38 @@ public class Display
         }
 
     }
+
+        public void printLine(String text)
+        {
+            System.out.println(text);
+        }
+
+        // gets raw string input from user
+        public String getUserInput(String prompt)
+        {
+            System.out.print(prompt);
+            return scanner.nextLine().trim();
+        }
+
+        // gets a yes or no answer for toasted and checkout confirmation
+        public boolean getAnswer(String prompt)
+        {
+            while (true)
+            {
+                System.out.print(prompt + " (y/n): ");
+                String input = scanner.nextLine().trim().toLowerCase();
+                if (input.equals("y")) return true;
+                if (input.equals("n")) return false;
+                System.out.println("Please enter y or n.");
+            }
+        }
+
+        // clears the screen
+        public void clearScreen()
+        {
+            System.out.println("\n".repeat(50));
+        }
+
 }
+
+
