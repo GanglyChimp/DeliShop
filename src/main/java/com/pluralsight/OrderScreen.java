@@ -29,7 +29,19 @@ public class OrderScreen {
             switch (choice)
             {
                 case 1:
-                    // addSandwich()
+                    //initial selection of bread type
+                    this.display.printHeader("Select Bread");
+                    this.display.printMenu(Menu.breadType);
+                    int breadChoice = this.display.getMenuChoice(1, Menu.breadType.length);
+                    String bread = Menu.breadType[breadChoice - 1];
+                    //size
+                    //create sandwich
+                    //select meats
+                    //choose cheese
+                    //toppings
+                    // sauces
+                    //toasted y/n
+                    //add order.
                     break;
                 case 2:
                     //  addDrink()
