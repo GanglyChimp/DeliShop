@@ -46,5 +46,11 @@ class OrderScreenTest
         assertEquals("12", size);
     }
 
-
+    @Test
+    public void testCheeseSelectionAmerican()
+    {
+        int cheeseChoice = 1;
+        String cheese = Menu.cheeseType[cheeseChoice - 1];
+        assertEquals("American", cheese);
+    }
 }
