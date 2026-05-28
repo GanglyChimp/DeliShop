@@ -143,15 +143,39 @@ public class OrderScreen {
                     //add order.
 
                     break;
+
                 case 2:
                     //  addDrink()
+                    this.display.printHeader("Select Drink");
+                    this.display.printMenu(Menu.drinkType);
+                    String flavor = Menu.drinkType[this.display.getMenuChoice(1, Menu.drinkType.length) - 1];
+
+                    this.display.printHeader("Select Drink Size");
+                    this.display.printMenu(Menu.drinkSize);
+                    String drinkSize = Menu.drinkSize[this.display.getMenuChoice(1, Menu.drinkSize.length) - 1];
+
+                    Drinks drink = new Drinks(drinkSize, flavor);
+
+                    this.order.addItem(drink);
+                    this.display.printLine(drinkSize + " " + flavor + " added to order.");
                     break;
+
                 case 3:
                     // addChips()
+                    this.display.printHeader("Select Chips");
+                    this.display.printMenu(Menu.chipsType);
+                    String chipType = Menu.chipsType[this.display.getMenuChoice(1, Menu.chipsType.length) - 1];
+
+                    Chips chips = new Chips(chipType);
+
+                    this.order.addItem(chips);
+                    this.display.printLine(chipType + " added to order.");
                     break;
+
                 case 4:
                     // checkout()
                     break;
+
                 case 0:
                     this.order.cancelOrder();
                     this.display.printLine("Order cancelled.");
