@@ -27,6 +27,8 @@ import com.pluralsight.Terminal.Display;
                     case 1:
 
                         this.display.printLine("Starting new order...");
+                        OrderScreen orderScreen=new OrderScreen(this.display);
+                        orderScreen.display();
                         break;
                     case 0:
                         this.display.printLine("Goodbye, thank you for visiting!");
