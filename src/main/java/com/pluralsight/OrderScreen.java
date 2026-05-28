@@ -33,6 +33,7 @@ public class OrderScreen {
                     this.display.printHeader("Select Bread");
                     this.display.printMenu(Menu.breadType);
                     int breadChoice = this.display.getMenuChoice(1, Menu.breadType.length);
+
                     String bread = Menu.breadType[breadChoice - 1];
 
                     //size
@@ -44,6 +45,7 @@ public class OrderScreen {
 
                     //create sandwich
                     Sandwich sandwich = new Sandwich(bread, size);
+
                     this.display.printHeader("Select Meat");
                     this.display.printMenu(Menu.meatType);
                     this.display.printLine("0) Done adding meats");
@@ -91,12 +93,18 @@ public class OrderScreen {
                     this.display.printHeader("select Toppings");
                     this.display.printMenu(Menu.toppings);
                     this.display.printLine("0) Done adding toppings");
+
                     boolean addingToppings = true;
-                    while (addingToppings) {
+
+                    while (addingToppings)
+                    {
                         int toppingChoice = this.display.getMenuChoice(0, Menu.toppings.length);
-                        if (toppingChoice == 0) {
+                        if (toppingChoice == 0)
+                        {
                             addingToppings = false;
-                        } else {
+                        }
+                        else
+                        {
                             sandwich.addToppings(Menu.toppings[toppingChoice - 1]);
                             this.display.printLine(Menu.toppings[toppingChoice - 1] + " added.");
                         }
@@ -106,12 +114,18 @@ public class OrderScreen {
                     this.display.printHeader("Select Sauces");
                     this.display.printMenu(Menu.sauceType);
                     this.display.printLine("0) Done adding sauces");
+
                     boolean addingSauces = true;
-                    while (addingSauces) {
+
+                    while (addingSauces)
+                    {
                         int sauceChoice = this.display.getMenuChoice(0, Menu.sauceType.length);
-                        if (sauceChoice == 0) {
+                        if (sauceChoice == 0)
+                        {
                             addingSauces = false;
-                        } else {
+                        }
+                        else
+                        {
                             sandwich.addSauces(Menu.sauceType[sauceChoice - 1]);
                             this.display.printLine(Menu.sauceType[sauceChoice - 1] + " added.");
                         }
@@ -121,6 +135,7 @@ public class OrderScreen {
                     this.display.printLine("1) Yes");
                     this.display.printLine("2) No");
                     int toastedChoice = this.display.getMenuChoice(1, 2);
+
                     sandwich.setToasted(toastedChoice == 1);
 
                     this.order.addItem(sandwich);
