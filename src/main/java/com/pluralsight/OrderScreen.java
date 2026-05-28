@@ -88,11 +88,43 @@ public class OrderScreen {
                     }
                     
                     //toppings
+                    this.display.printHeader("select Toppings");
+                    this.display.printMenu(Menu.toppings);
+                    this.display.printLine("0) Done adding toppings");
+                    boolean addingToppings = true;
+                    while (addingToppings) {
+                        int toppingChoice = this.display.getMenuChoice(0, Menu.toppings.length);
+                        if (toppingChoice == 0) {
+                            addingToppings = false;
+                        } else {
+                            sandwich.addToppings(Menu.toppings[toppingChoice - 1]);
+                            this.display.printLine(Menu.toppings[toppingChoice - 1] + " added.");
+                        }
+                    }
 
                     // sauces
-
+                    this.display.printHeader("Select Sauces");
+                    this.display.printMenu(Menu.sauceType);
+                    this.display.printLine("0) Done adding sauces");
+                    boolean addingSauces = true;
+                    while (addingSauces) {
+                        int sauceChoice = this.display.getMenuChoice(0, Menu.sauceType.length);
+                        if (sauceChoice == 0) {
+                            addingSauces = false;
+                        } else {
+                            sandwich.addSauces(Menu.sauceType[sauceChoice - 1]);
+                            this.display.printLine(Menu.sauceType[sauceChoice - 1] + " added.");
+                        }
+                    }
                     //toasted y/n
+                    this.display.printHeader("Toasted?");
+                    this.display.printLine("1) Yes");
+                    this.display.printLine("2) No");
+                    int toastedChoice = this.display.getMenuChoice(1, 2);
+                    sandwich.setToasted(toastedChoice == 1);
 
+                    this.order.addItem(sandwich);
+                    this.display.printLine("Sandwich added to order.");
                     //add order.
 
                     break;
