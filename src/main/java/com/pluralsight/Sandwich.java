@@ -70,6 +70,11 @@ public class Sandwich implements MenuItem
     Sauces.add(Sauce);
     }
 
+    public void setToasted(boolean toasted)
+    {
+        this.Toasted=toasted;
+    }
+
     //pricing
     private double getBasePrice()
     {
