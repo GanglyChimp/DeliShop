@@ -9,7 +9,8 @@ class OrderScreenTest
 
     @Test
 
-    public void testBreadSelection() {
+    public void testBreadSelection()
+    {
         // simulate user picking option 1 (white bread)
         int breadChoice = 1;
         String bread = Menu.breadType[breadChoice - 1];
@@ -19,28 +20,32 @@ class OrderScreenTest
     }
 
     @Test
-    public void testSizeSelectionFourInch() {
+    public void testSizeSelectionFourInch()
+    {
         int sizeChoice = 1;
         String size = Menu.SizesInch[sizeChoice - 1];
         assertEquals("4", size);
     }
 
     @Test
-    public void testSizeSelectionEightInch() {
+    public void testSizeSelectionEightInch()
+    {
         int sizeChoice = 2;
         String size = Menu.SizesInch[sizeChoice - 1];
         assertEquals("8", size);
     }
 
     @Test
-    public void testSizeSelectionTwelveInch() {
+    public void testSizeSelectionTwelveInch()
+    {
         int sizeChoice = 3;
         String size = Menu.SizesInch[sizeChoice - 1];
         assertEquals("12", size);
     }
 
     @Test
-    public void testSizeSelectionBoundary() {
+    public void testSizeSelectionBoundary()
+    {
         int sizeChoice = Menu.SizesInch.length;
         String size = Menu.SizesInch[sizeChoice - 1];
         assertEquals("12", size);

@@ -49,7 +49,7 @@ public class OrderScreen {
                     this.display.printLine("0) Done adding meats");
 
                     boolean addingMeats = true;
-
+                    //select meats
                     while (addingMeats)
                     {
                         int meatChoice = this.display.getMenuChoice(0, Menu.meatType.length);
@@ -64,10 +64,29 @@ public class OrderScreen {
                         }
                     }
 
-                    //select meats
 
                     //choose cheese
+                    this.display.printHeader("Select Cheese");
+                    this.display.printMenu(Menu.cheeseType);
+                    this.display.printLine("0) Done adding cheese");
+                    boolean addingCheese = true;
 
+                    while (addingCheese)
+                    {
+                        int cheeseChoice = this.display.getMenuChoice(0, Menu.cheeseType.length);
+
+                        if (cheeseChoice == 0)
+                        {
+                            addingCheese = false;
+                        }
+                        else
+                        {
+                            sandwich.addCheese(Menu.cheeseType[cheeseChoice - 1]);
+                            this.display.printLine(Menu.cheeseType[cheeseChoice - 1] + " added.");
+                        }
+
+                    }
+                    
                     //toppings
 
                     // sauces
