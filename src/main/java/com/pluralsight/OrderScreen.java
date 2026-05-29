@@ -1,6 +1,9 @@
 package com.pluralsight;
 
 import com.pluralsight.Terminal.Display;
+import com.pluralsight.Terminal.MenuItem;
+
+import java.util.List;
 
 public class OrderScreen {
     private Display display;
@@ -21,10 +24,11 @@ public class OrderScreen {
             this.display.printLine("2) Add Drink");
             this.display.printLine("3) Add Chips");
             this.display.printLine("4) Checkout");
+            this.display.printLine("5) Remove Item");
             this.display.printLine("0) Cancel Order");
             this.display.printLine("============================");
 
-            int choice = this.display.getMenuChoice(0, 4);
+            int choice = this.display.getMenuChoice(0, 5);
 
             switch (choice)
             {
@@ -35,7 +39,7 @@ public class OrderScreen {
                     int breadChoice = this.display.getMenuChoice(1, Menu.breadType.length);
 
                     String bread = Menu.breadType[breadChoice - 1];
-
+                    this.display.printLine(bread + "  Bread selected.");
                     //size
                     this.display.printHeader("Select Size");
                     this.display.printMenu(Menu.SizesInch);
@@ -46,23 +50,26 @@ public class OrderScreen {
                     //create sandwich
                     Sandwich sandwich = new Sandwich(bread, size);
 
+                    //select meats
                     this.display.printHeader("Select Meat");
                     this.display.printMenu(Menu.meatType);
                     this.display.printLine("0) Done adding meats");
 
                     boolean addingMeats = true;
-                    //select meats
+
                     while (addingMeats)
                     {
                         int meatChoice = this.display.getMenuChoice(0, Menu.meatType.length);
                         if (meatChoice == 0)
                         {
                            addingMeats = false;
+
                         }
                         else
                         {
                             sandwich.addMeats(Menu.meatType[meatChoice - 1]);
-                            this.display.printLine(Menu.meatType[meatChoice - 1] + " added.");
+                            this.display.printLine(Menu.meatType[meatChoice - 1] + " added, Total $"+sandwich.getPrice());
+                            this.display.printLine("Make another selection or Press 0 to continue.");
                         }
                     }
 
@@ -84,7 +91,7 @@ public class OrderScreen {
                         else
                         {
                             sandwich.addCheese(Menu.cheeseType[cheeseChoice - 1]);
-                            this.display.printLine(Menu.cheeseType[cheeseChoice - 1] + " added.");
+                            this.display.printLine(Menu.cheeseType[cheeseChoice - 1] + " added, Total $"+sandwich.getPrice());
                         }
 
                     }
@@ -107,6 +114,7 @@ public class OrderScreen {
                         {
                             sandwich.addToppings(Menu.toppings[toppingChoice - 1]);
                             this.display.printLine(Menu.toppings[toppingChoice - 1] + " added.");
+                            this.display.printLine("Make another selection or Press 0 to continue.");
                         }
                     }
 
@@ -128,6 +136,7 @@ public class OrderScreen {
                         {
                             sandwich.addSauces(Menu.sauceType[sauceChoice - 1]);
                             this.display.printLine(Menu.sauceType[sauceChoice - 1] + " added.");
+                            this.display.printLine("Make another selection or Press 0 to continue.");
                         }
                     }
                     //toasted y/n
@@ -140,8 +149,8 @@ public class OrderScreen {
 
                     this.order.addItem(sandwich);
                     this.display.printLine("Sandwich added to order.");
-                    //add order.
 
+                    //add order.
                     break;
 
                 case 2:
@@ -169,11 +178,47 @@ public class OrderScreen {
                     Chips chips = new Chips(chipType);
 
                     this.order.addItem(chips);
-                    this.display.printLine(chipType + " added to order.");
+                    this.display.printLine(chipType + " added to order. ");
                     break;
 
                 case 4:
                     // checkout()
+                    this.display.printHeader("Order Summary");
+                    for (MenuItem item : this.order.getItems())
+                    {
+                        this.display.printLine(item.getOptions());
+                        this.display.printLine(String.format("  $%.2f", item.getPrice()));
+                    }
+                    this.display.printLine("============================");
+                    this.display.printLine(String.format("Total: $%.2f", this.order.getTotal()));
+                    this.display.printLine("============================");
+                    boolean confirm = this.display.getAnswer("Confirm order?");
+                    if (confirm)
+                    {
+                        Receipt receipt = new Receipt(this.order);
+                        receipt.save();
+                        this.display.printLine("Thank you for your order");
+                        return;
+                    }
+                    break;
+
+                case 5:
+                    if (this.order.getItems().isEmpty())
+                    {
+                        this.display.printLine("No items in order.");
+                        break;
+                    }
+                    this.display.printHeader("Remove Item");
+                    List<MenuItem> items = this.order.getItems();
+                    for (int i = 0; i < items.size(); i++)
+                    {
+                        this.display.printLine((i + 1) + ") " + items.get(i).getOptions() +
+                                String.format(" - $%.2f", items.get(i).getPrice()));
+                    }
+                    this.display.printLine("Select item to remove:");
+                    int removeChoice = this.display.getMenuChoice(1, items.size());
+                    this.order.removeItem(removeChoice - 1);
+                    this.display.printLine("Item removed.");
                     break;
 
                 case 0:
