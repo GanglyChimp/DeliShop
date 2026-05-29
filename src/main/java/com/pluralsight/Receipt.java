@@ -16,9 +16,9 @@ public class Receipt
     {
         this.order = order;
         this.timestamp = LocalDateTime.now()
-                .format(DateTimeFormatter.ofPattern("MMdd-HHmm"));
+                .format(DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss"));
         this.displayTime = LocalDateTime.now()
-                .format(DateTimeFormatter.ofPattern("MM-dd / HH:mm"));
+                .format(DateTimeFormatter.ofPattern("MM-dd-yyyy / HH:mm:ss"));
     }
 
     public void save()

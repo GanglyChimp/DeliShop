@@ -18,7 +18,7 @@ public class Menu
        };
     public static final String[] toppings=
        {
-        "Lettuce", "Peppers", "Onions", "Tomatoes", "Jalapenos", "Cucumbers", "Pickles",
+        "Lettuce", "Peppers", "Onions", "Tomatoes", "Jalapeno's", "Cucumbers", "Pickles",
            "Guacamole", "Mushrooms"
        };
 
