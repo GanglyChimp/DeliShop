@@ -1,4 +1,4 @@
-package com.pluralsight;
+package com.pluralsight.Model;
 
 import com.pluralsight.Terminal.MenuItem;
 

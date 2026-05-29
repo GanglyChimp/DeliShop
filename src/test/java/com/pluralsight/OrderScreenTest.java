@@ -1,5 +1,6 @@
 package com.pluralsight;
 
+import com.pluralsight.Model.Menu;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

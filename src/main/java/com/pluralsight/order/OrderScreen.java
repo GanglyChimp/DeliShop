@@ -1,5 +1,10 @@
-package com.pluralsight;
+package com.pluralsight.order;
 
+import com.pluralsight.Model.Menu;
+import com.pluralsight.Model.Chips;
+import com.pluralsight.Model.Drinks;
+import com.pluralsight.Model.Sandwich;
+import com.pluralsight.Terminal.Receipt;
 import com.pluralsight.Terminal.Display;
 import com.pluralsight.Terminal.MenuItem;
 
@@ -69,7 +74,7 @@ public class OrderScreen {
                         {
                             sandwich.addMeats(Menu.meatType[meatChoice - 1]);
                             this.display.printLine(Menu.meatType[meatChoice - 1] + " added, Total $"+sandwich.getPrice());
-                            this.display.printLine("Make another selection or Press 0 to continue.");
+                            this.display.printLine("\n Make another selection or Press 0 to continue.");
                         }
                     }
 
@@ -114,7 +119,7 @@ public class OrderScreen {
                         {
                             sandwich.addToppings(Menu.toppings[toppingChoice - 1]);
                             this.display.printLine(Menu.toppings[toppingChoice - 1] + " added.");
-                            this.display.printLine("Make another selection or Press 0 to continue.");
+                            this.display.printLine("\n Make another selection or Press 0 to continue.");
                         }
                     }
 
@@ -136,7 +141,7 @@ public class OrderScreen {
                         {
                             sandwich.addSauces(Menu.sauceType[sauceChoice - 1]);
                             this.display.printLine(Menu.sauceType[sauceChoice - 1] + " added.");
-                            this.display.printLine("Make another selection or Press 0 to continue.");
+                            this.display.printLine("\n Make another selection or Press 0 to continue.");
                         }
                     }
                     //toasted y/n
@@ -166,7 +171,7 @@ public class OrderScreen {
                     Drinks drink = new Drinks(drinkSize, flavor);
 
                     this.order.addItem(drink);
-                    this.display.printLine(drinkSize + " " + flavor + " added to order.");
+                    this.display.printLine(drinkSize + " " + flavor + "\n added to order.");
                     break;
 
                 case 3:
@@ -178,11 +183,18 @@ public class OrderScreen {
                     Chips chips = new Chips(chipType);
 
                     this.order.addItem(chips);
-                    this.display.printLine(chipType + " added to order. ");
+                    this.display.printLine(chipType + "\n added to order. ");
                     break;
 
                 case 4:
                     // checkout()
+                    //if the users has not made any selections
+                    if (this.order.getItems().isEmpty())
+                    {
+                        this.display.printLine( "\n No items in order. Please add something before checking out.");
+                        break;
+                    }
+
                     this.display.printHeader("Order Summary");
                     for (MenuItem item : this.order.getItems())
                     {
@@ -197,7 +209,7 @@ public class OrderScreen {
                     {
                         Receipt receipt = new Receipt(this.order);
                         receipt.save();
-                        this.display.printLine("Thank you for your order");
+                        this.display.printLine("\n Thank you for your order");
                         return;
                     }
                     break;
@@ -205,7 +217,7 @@ public class OrderScreen {
                 case 5:
                     if (this.order.getItems().isEmpty())
                     {
-                        this.display.printLine("No items in order.");
+                        this.display.printLine("\n No items in order.");
                         break;
                     }
                     this.display.printHeader("Remove Item");

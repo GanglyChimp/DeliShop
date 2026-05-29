@@ -1,6 +1,6 @@
-package com.pluralsight;
+package com.pluralsight.Terminal;
 
-import com.pluralsight.Terminal.MenuItem;
+import com.pluralsight.order.Order;
 
 import java.io.*;
 import java.time.LocalDateTime;
