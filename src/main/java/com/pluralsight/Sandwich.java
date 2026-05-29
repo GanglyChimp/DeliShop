@@ -37,10 +37,6 @@ public class Sandwich implements MenuItem
         }
     }
 
-    public Map<String,Integer>getmeats()
-    {
-        return  meats;
-    }
 
     public void addCheese(String Cheese)
     {
@@ -152,9 +148,30 @@ public class Sandwich implements MenuItem
     @Override
     public String getOptions()
     {
-        return "Sandwich: " +size+ "||"+" "+ bread+ " "+"||"+Cheese+ " "+"||"+Toppings+
-         " "+ "||"+Sauces+" "+ "||"+Toasted;
+            StringBuilder cheeseList = new StringBuilder();
+            Cheese.forEach((cheese, count) ->
+            {
+                if (cheeseList.length() > 0) cheeseList.append(", ");
+                cheeseList.append(cheese);
+                if (count > 1) cheeseList.append(", extra ").append(cheese);
+            });
+
+            StringBuilder meatList = new StringBuilder();
+            meats.forEach((meat, count) ->
+            {
+                if (meatList.length() > 0) meatList.append(", ");
+               meatList.append(meat);
+                if (count > 1) meatList.append(", extra ").append(meat);
+            });
+
+        return "Sandwich: " + size + " inch on " + bread +
+                "\n  Meats:    " + meatList +
+                "\n  Cheese:   " + cheeseList +
+                "\n  Toppings: " + String.join(", ", Toppings) +
+                "\n  Sauces:   " + String.join(", ", Sauces) +
+                "\n  Toasted:  " + (Toasted ? "Yes" : "No");
     }
 }
+
 
 
