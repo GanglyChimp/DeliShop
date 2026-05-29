@@ -32,7 +32,14 @@ public class Order
         return reversed;
         //we reverse the order of the list to see the newest first
     }
-
+    //removeing an item
+    public void removeItem(int index)
+    {
+        if (index >= 0 && index < items.size())
+        {
+            items.remove(index);
+        }
+    }
     //getting the total price of all items
     public double getTotal()
     {
